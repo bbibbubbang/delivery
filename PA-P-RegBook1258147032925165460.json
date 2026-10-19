@@ -1,0 +1,355 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "(일반)예약 접수^(General) Reservation acceptance",
+    "version" : "1.0",
+    "title" : "PA-P-RegBook"
+  },
+  "host" : "dxapi.cjlogistics.com:5052",
+  "basePath" : "/gateway/PA-P-RegBook/1.0",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/RegBook" : {
+      "post" : {
+        "summary" : "▶ (일반) 예약 접수\r\n- 서비스 명 : WR_OPENAPI_001_FL\r\n- API 명 : RegBook\r\n- Comment\r\n   i) 고객의 요청으로 Response의 에러메세지는 오라클 에러만 return",
+        "description" : "▶ (일반) 예약 접수\r\n- 서비스 명 : WR_OPENAPI_001_FL\r\n- API 명 : RegBook\r\n- Comment\r\n   i) 고객의 요청으로 Response의 에러메세지는 오라클 에러만 return",
+        "operationId" : "RegBook_POST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/xml", "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DATA"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E400</RESULT_CD> <RESULT_DETAIL>Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E400\", \"RESULT_DETAIL\":\" Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)\" }",
+              "text/plain" : "Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed. (인증에 실패했습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E401</RESULT_CD> <RESULT_DETAIL>Authentication failed (인증에 실패했습니다.). 발급된 인증키를 확인 해주세요.</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E401\", \"RESULT_DETAIL\":\"Authentication failed (인증에 실패했습니다.). 발급된 인증키를 확인 해주세요.\" }",
+              "text/plain" : "Authentication failed. (인증에 실패했습니다.)"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E500</RESULT_CD> <RESULT_DETAIL>Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E500\", \"RESULT_DETAIL\":\"Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)\" }",
+              "text/plain" : "Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E403</RESULT_CD> <RESULT_DETAIL>Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E403\", \"RESULT_DETAIL\":\"Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)\" }",
+              "text/plain" : "Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)"
+            }
+          },
+          "404" : {
+            "description" : "Not Found (검색 결과가 없습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E404</RESULT_CD> <RESULT_DETAIL>Not Found (검색 결과가 없습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E404\", \"RESULT_DETAIL\":\"Not Found (검색 결과가 없습니다.)\" }",
+              "text/plain" : "Not Found (검색 결과가 없습니다.)"
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests (호출 한도가 초과 되었습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E429</RESULT_CD> <RESULT_DETAIL>Too Many Requests (호출 한도가 초과 되었습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E429\", \"RESULT_DETAIL\":\"Too Many Requests (호출 한도가 초과 되었습니다.)\" }",
+              "text/plain" : "Too Many Requests (호출 한도가 초과 되었습니다.)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "CJ-Gateway-APIKey",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "ARRAY" : {
+      "type" : "object",
+      "required" : [ "GDS_AMT", "GDS_CD", "GDS_NM", "GDS_QTY", "MPCK_SEQ", "UNIT_CD", "UNIT_NM" ],
+      "properties" : {
+        "GDS_AMT" : {
+          "type" : "string"
+        },
+        "GDS_CD" : {
+          "type" : "string"
+        },
+        "GDS_NM" : {
+          "type" : "string"
+        },
+        "GDS_QTY" : {
+          "type" : "string"
+        },
+        "MPCK_SEQ" : {
+          "type" : "string"
+        },
+        "UNIT_CD" : {
+          "type" : "string"
+        },
+        "UNIT_NM" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DATA" : {
+      "type" : "object",
+      "required" : [ "ARRAY", "ARTICLE_AMT", "BOX_QTY", "BOX_TYPE_CD", "CAL_DV_CD", "CNTR_ITEM_CD", "COD_YN", "COLCT_EXPCT_HOUR", "COLCT_EXPCT_YMD", "CUST_ID", "CUST_MGMT_DLCM_CD", "CUST_USE_NO", "DLV_DV", "ETC_1", "ETC_2", "ETC_3", "ETC_4", "ETC_5", "FRT", "FRT_DV_CD", "INVC_NO", "MPCK_KEY", "ORDRR_ADDR", "ORDRR_CELL_NO1", "ORDRR_CELL_NO2", "ORDRR_CELL_NO3", "ORDRR_DETAIL_ADDR", "ORDRR_NM", "ORDRR_SAFE_NO1", "ORDRR_SAFE_NO2", "ORDRR_SAFE_NO3", "ORDRR_TEL_NO1", "ORDRR_TEL_NO2", "ORDRR_TEL_NO3", "ORDRR_ZIP_NO", "ORI_INVC_NO", "ORI_ORD_NO", "PRT_ST", "RCPT_DV", "RCPT_SERIAL", "RCPT_YMD", "RCVR_ADDR", "RCVR_CELL_NO1", "RCVR_CELL_NO2", "RCVR_CELL_NO3", "RCVR_DETAIL_ADDR", "RCVR_NM", "RCVR_SAFE_NO1", "RCVR_SAFE_NO2", "RCVR_SAFE_NO3", "RCVR_TEL_NO1", "RCVR_TEL_NO2", "RCVR_TEL_NO3", "RCVR_ZIP_NO", "REMARK_1", "REMARK_2", "REMARK_3", "REQ_DV_CD", "SENDR_ADDR", "SENDR_CELL_NO1", "SENDR_CELL_NO2", "SENDR_CELL_NO3", "SENDR_DETAIL_ADDR", "SENDR_NM", "SENDR_SAFE_NO1", "SENDR_SAFE_NO2", "SENDR_SAFE_NO3", "SENDR_TEL_NO1", "SENDR_TEL_NO2", "SENDR_TEL_NO3", "SENDR_ZIP_NO", "SHIP_EXPCT_HOUR", "SHIP_EXPCT_YMD", "TOKEN_NUM", "WORK_DV_CD" ],
+      "properties" : {
+        "ARRAY" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ARRAY"
+          }
+        },
+        "ARTICLE_AMT" : {
+          "type" : "string"
+        },
+        "BOX_QTY" : {
+          "type" : "string"
+        },
+        "BOX_TYPE_CD" : {
+          "type" : "string"
+        },
+        "CAL_DV_CD" : {
+          "type" : "string"
+        },
+        "CNTR_ITEM_CD" : {
+          "type" : "string"
+        },
+        "COD_YN" : {
+          "type" : "string"
+        },
+        "COLCT_EXPCT_HOUR" : {
+          "type" : "string"
+        },
+        "COLCT_EXPCT_YMD" : {
+          "type" : "string"
+        },
+        "CUST_ID" : {
+          "type" : "string"
+        },
+        "CUST_MGMT_DLCM_CD" : {
+          "type" : "string"
+        },
+        "CUST_USE_NO" : {
+          "type" : "string"
+        },
+        "DLV_DV" : {
+          "type" : "string"
+        },
+        "ETC_1" : {
+          "type" : "string"
+        },
+        "ETC_2" : {
+          "type" : "string"
+        },
+        "ETC_3" : {
+          "type" : "string"
+        },
+        "ETC_4" : {
+          "type" : "string"
+        },
+        "ETC_5" : {
+          "type" : "string"
+        },
+        "FRT" : {
+          "type" : "string"
+        },
+        "FRT_DV_CD" : {
+          "type" : "string"
+        },
+        "INVC_NO" : {
+          "type" : "string"
+        },
+        "MPCK_KEY" : {
+          "type" : "string"
+        },
+        "ORDRR_ADDR" : {
+          "type" : "string"
+        },
+        "ORDRR_CELL_NO1" : {
+          "type" : "string"
+        },
+        "ORDRR_CELL_NO2" : {
+          "type" : "string"
+        },
+        "ORDRR_CELL_NO3" : {
+          "type" : "string"
+        },
+        "ORDRR_DETAIL_ADDR" : {
+          "type" : "string"
+        },
+        "ORDRR_NM" : {
+          "type" : "string"
+        },
+        "ORDRR_SAFE_NO1" : {
+          "type" : "string"
+        },
+        "ORDRR_SAFE_NO2" : {
+          "type" : "string"
+        },
+        "ORDRR_SAFE_NO3" : {
+          "type" : "string"
+        },
+        "ORDRR_TEL_NO1" : {
+          "type" : "string"
+        },
+        "ORDRR_TEL_NO2" : {
+          "type" : "string"
+        },
+        "ORDRR_TEL_NO3" : {
+          "type" : "string"
+        },
+        "ORDRR_ZIP_NO" : {
+          "type" : "string"
+        },
+        "ORI_INVC_NO" : {
+          "type" : "string"
+        },
+        "ORI_ORD_NO" : {
+          "type" : "string"
+        },
+        "PRT_ST" : {
+          "type" : "string"
+        },
+        "RCPT_DV" : {
+          "type" : "string"
+        },
+        "RCPT_SERIAL" : {
+          "type" : "string"
+        },
+        "RCPT_YMD" : {
+          "type" : "string"
+        },
+        "RCVR_ADDR" : {
+          "type" : "string"
+        },
+        "RCVR_CELL_NO1" : {
+          "type" : "string"
+        },
+        "RCVR_CELL_NO2" : {
+          "type" : "string"
+        },
+        "RCVR_CELL_NO3" : {
+          "type" : "string"
+        },
+        "RCVR_DETAIL_ADDR" : {
+          "type" : "string"
+        },
+        "RCVR_NM" : {
+          "type" : "string"
+        },
+        "RCVR_SAFE_NO1" : {
+          "type" : "string"
+        },
+        "RCVR_SAFE_NO2" : {
+          "type" : "string"
+        },
+        "RCVR_SAFE_NO3" : {
+          "type" : "string"
+        },
+        "RCVR_TEL_NO1" : {
+          "type" : "string"
+        },
+        "RCVR_TEL_NO2" : {
+          "type" : "string"
+        },
+        "RCVR_TEL_NO3" : {
+          "type" : "string"
+        },
+        "RCVR_ZIP_NO" : {
+          "type" : "string"
+        },
+        "REMARK_1" : {
+          "type" : "string"
+        },
+        "REMARK_2" : {
+          "type" : "string"
+        },
+        "REMARK_3" : {
+          "type" : "string"
+        },
+        "REQ_DV_CD" : {
+          "type" : "string"
+        },
+        "SENDR_ADDR" : {
+          "type" : "string"
+        },
+        "SENDR_CELL_NO1" : {
+          "type" : "string"
+        },
+        "SENDR_CELL_NO2" : {
+          "type" : "string"
+        },
+        "SENDR_CELL_NO3" : {
+          "type" : "string"
+        },
+        "SENDR_DETAIL_ADDR" : {
+          "type" : "string"
+        },
+        "SENDR_NM" : {
+          "type" : "string"
+        },
+        "SENDR_SAFE_NO1" : {
+          "type" : "string"
+        },
+        "SENDR_SAFE_NO2" : {
+          "type" : "string"
+        },
+        "SENDR_SAFE_NO3" : {
+          "type" : "string"
+        },
+        "SENDR_TEL_NO1" : {
+          "type" : "string"
+        },
+        "SENDR_TEL_NO2" : {
+          "type" : "string"
+        },
+        "SENDR_TEL_NO3" : {
+          "type" : "string"
+        },
+        "SENDR_ZIP_NO" : {
+          "type" : "string"
+        },
+        "SHIP_EXPCT_HOUR" : {
+          "type" : "string"
+        },
+        "SHIP_EXPCT_YMD" : {
+          "type" : "string"
+        },
+        "TOKEN_NUM" : {
+          "type" : "string"
+        },
+        "WORK_DV_CD" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

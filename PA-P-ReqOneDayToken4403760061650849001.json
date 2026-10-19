@@ -1,0 +1,109 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "(공통)1DAY 토큰 발행(24시간 유효)^(Common) 1DAY token issuance (valid for 24 hours)",
+    "version" : "1.0",
+    "title" : "PA-P-ReqOneDayToken"
+  },
+  "host" : "dxapi.cjlogistics.com:5052",
+  "basePath" : "/gateway/PA-P-ReqOneDayToken/1.0",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/ReqOneDayToken" : {
+      "post" : {
+        "summary" : "▶ 1Day 토큰발행\r\n- 서비스 명 : WS_OPENAPI_006_FL\r\n- API 명 : ReqOneDayToken\r\n- Comment\r\n   i) Nplus TB_MSCD_CODE_D 테이블의 BSEVAL의 값이 'P'이면 운영, 그 외 개발 \r\n      (개발의 경우 승인대기등록 로직 skip, 값에 따라 API Gateway 호출 URL 개발/운영으로 셋팅)\r\n   ii) 전체 Application 조회 시 나오는 token key 는 암호화",
+        "description" : "▶ 1Day 토큰발행\r\n- 서비스 명 : WS_OPENAPI_006_FL\r\n- API 명 : ReqOneDayToken\r\n- Comment\r\n   i) Nplus TB_MSCD_CODE_D 테이블의 BSEVAL의 값이 'P'이면 운영, 그 외 개발 \r\n      (개발의 경우 승인대기등록 로직 skip, 값에 따라 API Gateway 호출 URL 개발/운영으로 셋팅)\r\n   ii) 전체 Application 조회 시 나오는 token key 는 암호화 된 값이므로 해당 Application id로 상세조회 필요",
+        "operationId" : "ReqOneDayToken_POST_1",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/xml", "application/json", "text/plain" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/DATA"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E400</RESULT_CD> <RESULT_DETAIL>Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E400\", \"RESULT_DETAIL\":\" Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)\" }",
+              "text/plain" : "Bad Request (파라미터가 잘못되었거나, 요청문이 잘못되었습니다.)"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E500</RESULT_CD> <RESULT_DETAIL>Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E500\", \"RESULT_DETAIL\":\"Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)\" }",
+              "text/plain" : "Internal Server Error (서버 내부 에러가 발생했습니다. 관리자에게 문의 바랍니다.)"
+            }
+          },
+          "401" : {
+            "description" : "Authentication failed. (인증에 실패했습니다.) ",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E401</RESULT_CD> <RESULT_DETAIL>Authentication failed (인증에 실패했습니다.). 발급된 인증키를 확인 해주세요.</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E401\", \"RESULT_DETAIL\":\"Authentication failed (인증에 실패했습니다.). 발급된 인증키를 확인 해주세요.\" }",
+              "text/plain" : "Authentication failed. (인증에 실패했습니다.) "
+            }
+          },
+          "403" : {
+            "description" : "Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E403</RESULT_CD> <RESULT_DETAIL>Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E403\", \"RESULT_DETAIL\":\"Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)\" }",
+              "text/plain" : "Forbidden (호출권한이 없거나, 토큰의 유효기간이 지났습니다.)"
+            }
+          },
+          "404" : {
+            "description" : "Not Found (검색 결과가 없습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E404</RESULT_CD> <RESULT_DETAIL>Not Found (검색 결과가 없습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E404\", \"RESULT_DETAIL\":\"Not Found (검색 결과가 없습니다.)\" }",
+              "text/plain" : "Not Found (검색 결과가 없습니다.)"
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests (호출 한도가 초과 되었습니다.)",
+            "examples" : {
+              "application/xml" : "<xml> <RESULT_CD>E429</RESULT_CD> <RESULT_DETAIL>Too Many Requests (호출 한도가 초과 되었습니다.)</RESULT_DETAIL> </xml>",
+              "application/json" : "{ \"RESULT_CD\" : \"E429\", \"RESULT_DETAIL\":\"Too Many Requests (호출 한도가 초과 되었습니다.)\" }",
+              "text/plain" : "Too Many Requests (호출 한도가 초과 되었습니다.)"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "CJ-Gateway-APIKey",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "DATA" : {
+      "type" : "object",
+      "required" : [ "BIZ_REG_NUM", "CUST_ID", "USER_ID" ],
+      "properties" : {
+        "BIZ_REG_NUM" : {
+          "type" : "string"
+        },
+        "CUST_ID" : {
+          "type" : "string"
+        },
+        "USER_ID" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
