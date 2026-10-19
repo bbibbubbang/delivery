@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupang & CJ Logistics Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+    <div class="max-w-3xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold text-center mb-8 text-blue-600">Admin Dashboard</h1>
+
+        <!-- Password Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-xl font-semibold mb-4">Admin Authentication</h2>
+            <div class="flex items-center space-x-4">
+                <input
+                    type="password"
+                    id="admin-password-input"
+                    placeholder="Enter Admin Password"
+                    class="flex-1 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                    id="save-password-btn"
+                    class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                >
+                    Save
+                </button>
+            </div>
+            <p id="password-status" class="mt-2 text-sm text-gray-500"></p>
+        </div>
+
+        <!-- API Testing Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">API Communication Test</h2>
+            <p class="text-gray-600 mb-4">Test communication with the backend server using the saved password.</p>
+
+            <button
+                id="test-auth-btn"
+                class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition mb-4"
+            >
+                Test Authentication
+            </button>
+
+            <div class="mt-4">
+                <h3 class="font-medium text-gray-700 mb-2">Response:</h3>
+                <pre id="api-response" class="bg-gray-50 p-4 rounded border text-sm overflow-x-auto min-h-[100px]">No response yet.</pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
