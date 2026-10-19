@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const STORAGE_KEY = 'admin_password';
     // Use an environment variable or default to localhost for development
     // In production, this would be the Render.com URL
-    const BACKEND_URL = 'http://localhost:3000';
+    const BACKEND_URL = 'https://delivery-ksth.onrender.com';
 
     // Initialize UI from localStorage
     const savedPassword = localStorage.getItem(STORAGE_KEY);
